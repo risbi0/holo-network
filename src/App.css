@@ -1,0 +1,18 @@
+#graph-id-graph-wrapper {
+    margin-top: 100px;
+}
+
+#graph-id-graph-wrapper svg {
+    display: block;
+    margin: auto;
+    border: 1px solid black;
+}
+
+#desc {
+    margin-top: 50px;
+}
+#desc p {
+    width: 1000px;
+    margin: auto;
+    margin-top: 20px;
+}
