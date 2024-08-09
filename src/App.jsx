@@ -10,22 +10,20 @@ function App() {
   };
 
   const myConfig = {
-    //focusedNodeId: "Gawr Gura",
-    color: "#eeeeee",
+    staticGraph: true,
     nodeHighlightBehavior: true,
     linkHighlightBehavior: true,
     highlightOpacity: 0.3,
     node: {
-      color: "lightgreen",
-      size: 120,
+      size: 150,
       highlightStrokeColor: "blue",
       renderLabel: false
     },
     link: {
-      color: '#555',
-      highlightColor: "#000",
-      strokeWidth: "0.1",
-      opacity: 0.8
+      color: '#999',
+      highlightColor: "#00F",
+      strokeWidth: "0.2",
+      opacity: 0.5
     },
     width: 1000,
     height: 1000,
