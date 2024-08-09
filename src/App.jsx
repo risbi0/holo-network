@@ -1,26 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Graph } from "react-d3-graph";
 import { nodes } from './nodes';
 import { links } from './links';
 import './App.css';
 
 function App() {
-  const [dimensions, setDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  useEffect(() => {
-      const handleResize = () => {
-          setDimensions({
-              width: window.innerWidth,
-              height: window.innerHeight,
-          });
-      };
-
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-  }, []);
   const data = {
     nodes: nodes,
     links: links,
@@ -42,8 +26,6 @@ function App() {
       strokeWidth: "0.5",
       opacity: 0.5
     },
-    width: dimensions.width,
-    height: dimensions.height,
     d3: {
       linkLength: 200
     }
