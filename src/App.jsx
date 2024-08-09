@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Graph } from "react-d3-graph";
 import { nodes } from './nodes';
 import { links } from './links';
@@ -31,6 +32,18 @@ function App() {
       linkLength: 200
     }
   };
+
+  useEffect(() => {
+    const checkElements = () => {
+      const nodeElements = document.querySelectorAll('.node');
+      if (nodeElements.length > 0) {
+        nodeElements.forEach(b=>b.setAttribute('clip-path', 'circle(50% at 50% 50%)'))
+      } else {
+        setTimeout(checkElements, 100);
+      }
+    };
+    checkElements();
+  }, []);
 
   return (
     <>
