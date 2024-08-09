@@ -16,14 +16,14 @@ function App() {
     linkHighlightBehavior: true,
     highlightOpacity: 0.3,
     node: {
-      size: 150,
+      size: 300,
       highlightStrokeColor: "blue",
       renderLabel: false
     },
     link: {
-      color: '#999',
-      highlightColor: "#00F",
-      strokeWidth: "0.2",
+      color: '#AAA',
+      highlightColor: "#F00",
+      strokeWidth: "0.5",
       opacity: 0.5
     },
     width: 1000,
