@@ -1,61 +1,102 @@
-import { useEffect } from "react";
-import { Graph } from "react-d3-graph";
-import { nodes } from './nodes';
-import { links } from './links';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useRef, useEffect } from 'react';
+import * as d3 from 'd3';
 import './App.css';
+import { links } from './links';
+import { nodes } from './nodes';
+import { connections } from './connections';
 
-function App() {
+const App = () => {
+  const svgRef = useRef();
+  
   const data = {
     nodes: nodes,
-    links: links,
+    links: links 
   };
 
-  const myConfig = {
-    staticGraph: true,
-    nodeHighlightBehavior: true,
-    linkHighlightBehavior: true,
-    highlightOpacity: 0.3,
-    node: {
-      size: 300,
-      highlightStrokeColor: "blue",
-      renderLabel: false
-    },
-    link: {
-      color: '#AAA',
-      highlightColor: "#F00",
-      strokeWidth: "0.5",
-      opacity: 0.5
-    },
-    d3: {
-      linkLength: 200
-    }
-  };
-
+  const nodeSize = 30;
+  
   useEffect(() => {
-    const checkElements = () => {
-      const nodeElements = document.querySelectorAll('.node');
-      if (nodeElements.length > 0) {
-        nodeElements.forEach(b=>b.setAttribute('clip-path', 'circle(50% at 50% 50%)'))
-      } else {
-        setTimeout(checkElements, 100);
-      }
-    };
-    checkElements();
-  }, []);
+    const svg = d3.select(svgRef.current);
+    const width = 1000;
+    const height = 1000;
 
-  return (
-    <>
-      <Graph
-        id="graph-id"
-        data={data}
-        config={myConfig}
-      />
-      <div id='desc'>
-        <p>Mostly from livestreams</p>
-        <p>Unplanned collabs (i.e. in Minecraft) and totsumachi calls don&apos;t count</p>
-      </div>
-    </>
-  )
-}
+    svg.selectAll('*').remove();
 
-export default App
+    const simulation = d3.forceSimulation(data.nodes)
+      .force('link', d3.forceLink(data.links).id(d => d.name).distance(50))
+      .force('charge', d3.forceManyBody().strength(-200))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .on('tick', ticked);
+
+    function ticked() {
+      link
+        .attr('x1', l => l.source.x)
+        .attr('y1', l => l.source.y)
+        .attr('x2', l => l.target.x)
+        .attr('y2', l => l.target.y);
+      node
+        .attr('x', n => n.x - nodeSize / 2)
+        .attr('y', n => n.y - nodeSize / 2);
+    }
+
+    const link = svg.append('g')
+      .attr('class', 'links')
+      .selectAll('line')
+      .data(data.links)
+      .enter().append('line')
+      .attr('stroke-width', 0.3)
+      .attr('stroke', '#AAA');
+
+    const node = svg.append('g')
+      .attr('class', 'nodes')
+      .selectAll('image')
+      .data(data.nodes)
+      .enter().append('svg:image')
+      .attr('width', nodeSize)
+      .attr('height', nodeSize)
+      .attr('clip-path', 'circle(50% at 50% 50%)')
+      .attr('xlink:href', n => n.img)
+
+    // drag events
+    /* node.call(d3.drag()
+      .on('start', dragStart)
+      .on('drag', dragging)
+      .on('end', dragEnd)); */
+
+    function dragStart(e) {
+      if (!e.active) simulation.alphaTarget(0.3).restart();
+      e.subject.fx = e.subject.x;
+      e.subject.fy = e.subject.y;
+    }
+
+    function dragging(e) {
+      e.subject.fx = e.x;
+      e.subject.fy = e.y;
+    }
+
+    function dragEnd(e) {
+      if (!e.active) simulation.alphaTarget(0);
+      e.subject.fx = null;
+      e.subject.fy = null;
+    }
+
+    // highlight hovered node and its links
+    node.on('mouseover', (_, selected_node) => {
+      link.style('stroke', (_, i) => connections[selected_node.name]['links'][i] ? 'red' : '#AAA');
+      link.style('opacity', (_, i) => connections[selected_node.name]['links'][i] ? 1 : 0.3);
+      node.style('opacity', (_, i) => connections[selected_node.name]['nodes'][i] ? 1 : 0.3);
+    });
+
+    // reset styles
+    node.on('mouseout', () => {
+      node.style('opacity', 1);
+      link.style('opacity', 1);
+      link.style('stroke', '#AAA');
+    });
+  }, [data]);
+
+  return <svg ref={svgRef} id='main'></svg>;
+};
+
+export default App;

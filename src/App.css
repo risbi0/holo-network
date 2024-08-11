@@ -1,8 +1,14 @@
 body {
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
-svg[name="svg-container-graph-id"] {
-    width: 100vw !important;
-    height: 100vh !important;
+#main {
+    width: 1000px;
+    height: 1000px;
+}
+
+.nodes * {
+    user-select: none;
+    cursor: pointer;
+    border-radius: 50%;
 }
