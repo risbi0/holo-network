@@ -13,7 +13,7 @@ export const nodes = [
     
     {fx: 316, fy: 341, name: 'Minato Aqua',               img: 'https://yt3.ggpht.com/ytc/AIdro_kaZLtKaya9TSJr3M4lpzV95R2rWdQtGk67fwedroUfSnE=s800-c-k-c0x00ffffff-no-rj'},
     {fx: 372, fy: 296, name: 'Murasaki Shion',            img: 'https://yt3.ggpht.com/V3GVqD-sYadScSd8QYW4x1QTRfu2RyUNyKWVRb0IJxX0gj2PV6xH32d_BJHn3l0fouPLUw6Ref0=s800-c-k-c0x00ffffff-no-rj'},
-    {fx: 306, fy: 265, name: 'Nakiri Ayame',              img: 'https://yt3.ggpht.com/XDGhKwPZcT16Ppg2gQmLHEIYRhw9sY4rqG0HWbeCH68LHkhlVQrrFgxd5hWUuMb2nLfDOhu6=s800-c-k-c0x00ffffff-no-rj'},
+    {fx: 275, fy: 313, name: 'Nakiri Ayame',              img: 'https://yt3.ggpht.com/XDGhKwPZcT16Ppg2gQmLHEIYRhw9sY4rqG0HWbeCH68LHkhlVQrrFgxd5hWUuMb2nLfDOhu6=s800-c-k-c0x00ffffff-no-rj'},
     {fx: 313, fy: 268, name: 'Yuzuki Choco',              img: 'https://yt3.ggpht.com/eB_qZXKL-jDhGyEstj9BvLL0qO_tHEMaIpkfp8M-qXYweZOpDm7uZgBwbWfxwAT7uKh_5tEj=s800-c-k-c0x00ffffff-no-rj'},
     {fx: 358, fy: 239, name: 'Oozora Subaru',             img: 'https://yt3.ggpht.com/ytc/AIdro_k5mjdt1wcbaYCXKwmDpVXmSGtOc-LH3WjIyUHVC4soP28=s800-c-k-c0x00ffffff-no-rj'},
     
