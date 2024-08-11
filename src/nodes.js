@@ -114,3 +114,10 @@ export const nodes = [
     {fx: 802, fy: 770, name: 'Octavio',                   img: 'https://yt3.ggpht.com/gIHnyS3rzWyP5H75gXbVkKy-AjWgq6SoSA5stdtffSmWLsudt1gxQ7_9U-VRrb7f8FgqrrbX6U4=s800-c-k-c0x00ffffff-no-rj'},
     {fx: 859, fy: 763, name: 'Crimson Ruze',              img: 'https://yt3.ggpht.com/yzWpLfC1h3ewxv57y5ebtzUwYshCebcNx7_3uVjSX_2bTi_nqRJd4pjAsszVW2B_26zpX7fzFQ=s800-c-k-c0x00ffffff-no-rj'},
 ];
+
+// adjust coordinates based on browser dimensions
+const baseDim = 1000;
+for (let i = 0; i < nodes.length; i++) {
+    nodes[i].fx *= window.innerWidth / baseDim;
+    nodes[i].fy *= window.innerHeight / baseDim;
+}

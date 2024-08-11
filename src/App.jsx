@@ -18,15 +18,13 @@ const App = () => {
   
   useEffect(() => {
     const svg = d3.select(svgRef.current);
-    const width = 1000;
-    const height = 1000;
 
     svg.selectAll('*').remove();
 
     const simulation = d3.forceSimulation(data.nodes)
       .force('link', d3.forceLink(data.links).id(d => d.name).distance(50))
       .force('charge', d3.forceManyBody().strength(-200))
-      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
       .on('tick', ticked);
 
     function ticked() {
