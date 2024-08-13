@@ -54,7 +54,7 @@ const App = () => {
       .attr('width', nodeSize)
       .attr('height', nodeSize)
       .attr('clip-path', 'circle(50% at 50% 50%)')
-      .attr('xlink:href', n => n.img)
+      .attr('xlink:href', n => n.img);
 
     // drag events
     /* node.call(d3.drag()
