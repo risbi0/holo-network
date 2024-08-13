@@ -24,8 +24,8 @@ const App = () => {
 
     const simulation = d3.forceSimulation(data.nodes)
       .force('link', d3.forceLink(data.links).id(d => d.name).distance(50))
-      .force('charge', d3.forceManyBody().strength(-200))
-      .force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
+      //.force('charge', d3.forceManyBody().strength(-200))
+      //.force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2))
       .on('tick', ticked);
 
     function ticked() {
@@ -57,6 +57,7 @@ const App = () => {
       .attr('clip-path', 'circle(50% at 50% 50%)')
       .attr('xlink:href', n => n.img);
 
+    // too laggy
     // drag events
     /* node.call(d3.drag()
       .on('start', dragStart)
