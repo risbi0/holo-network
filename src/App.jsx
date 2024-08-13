@@ -90,9 +90,9 @@ const App = () => {
 
     // reset styles
     node.on('mouseout', () => {
-      node.style('opacity', 1);
-      link.style('opacity', 1);
       link.style('stroke', defaultStrokeColor);
+      link.style('opacity', 1);
+      node.style('opacity', 1);
     });
   }, [data]);
 
