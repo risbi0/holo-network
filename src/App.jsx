@@ -85,14 +85,14 @@ const App = () => {
     node.on('mouseover', (_, selected_node) => {
       link.style('stroke', (_, i) => connections[selected_node.name]['links'][i] ? '#89DBEB' : defaultStrokeColor);
       link.style('opacity', (_, i) => connections[selected_node.name]['links'][i] ? 1 : 0.3);
-      node.style('opacity', (_, i) => connections[selected_node.name]['nodes'][i] ? 1 : 0.3);
+      node.style('filter', (_, i) => connections[selected_node.name]['nodes'][i] ? null : 'brightness(40%)');
     });
 
     // reset styles
     node.on('mouseout', () => {
       link.style('stroke', defaultStrokeColor);
       link.style('opacity', 1);
-      node.style('opacity', 1);
+      node.style('filter', null);
     });
   }, [data]);
 
