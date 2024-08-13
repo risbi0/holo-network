@@ -15,6 +15,7 @@ const App = () => {
   };
 
   const nodeSize = 30;
+  const defaultStrokeColor = '#999';
   
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -43,8 +44,8 @@ const App = () => {
       .selectAll('line')
       .data(data.links)
       .enter().append('line')
-      .attr('stroke-width', 0.3)
-      .attr('stroke', '#AAA');
+      .attr('stroke-width', 0.2)
+      .attr('stroke', defaultStrokeColor);
 
     const node = svg.append('g')
       .attr('class', 'nodes')
@@ -81,7 +82,7 @@ const App = () => {
 
     // highlight hovered node and its links
     node.on('mouseover', (_, selected_node) => {
-      link.style('stroke', (_, i) => connections[selected_node.name]['links'][i] ? 'red' : '#AAA');
+      link.style('stroke', (_, i) => connections[selected_node.name]['links'][i] ? '#89DBEB' : defaultStrokeColor);
       link.style('opacity', (_, i) => connections[selected_node.name]['links'][i] ? 1 : 0.3);
       node.style('opacity', (_, i) => connections[selected_node.name]['nodes'][i] ? 1 : 0.3);
     });
@@ -90,7 +91,7 @@ const App = () => {
     node.on('mouseout', () => {
       node.style('opacity', 1);
       link.style('opacity', 1);
-      link.style('stroke', '#AAA');
+      link.style('stroke', defaultStrokeColor);
     });
   }, [data]);
 
